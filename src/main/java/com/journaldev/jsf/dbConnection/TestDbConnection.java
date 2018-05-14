@@ -12,12 +12,10 @@ public class TestDbConnection {
 	public static void main(String[] args) {
 		
 		// INSERT
-		ToDo todo = new ToDo("testDbConn", Date.valueOf(LocalDate.now()));
-		ToDoDatabaseUtilities.addToDo(todo);
-		
-		//REMOVE
-				
-				
+		ToDo todo = new ToDo( null,"testDbConn", Date.valueOf(LocalDate.now()));
+		ToDoController td = new ToDoController();
+		td.addToDo(todo);
+						
 		//VIEW
 		ArrayList<ToDo> toDos = new ToDoController().getTodos();
 		for (ToDo t :  toDos) {
@@ -25,10 +23,10 @@ public class TestDbConnection {
 			if("testDbConn".equals(t.getTodoText())) {
 				ToDoDatabaseUtilities.removeToDo(t);
 			}
-			if(t.getTodoID().equals(Integer.parseInt("5"))){
-				t.setTodoText("updated.");
-				ToDoDatabaseUtilities.editToDoText(t);
-			}
+			if(t.getTodoID().equals(Integer.parseInt("6"))){
+			t.setTodoText("updated.");
+			ToDoDatabaseUtilities.editToDoText(t);
+		}
 		}
 		
 		

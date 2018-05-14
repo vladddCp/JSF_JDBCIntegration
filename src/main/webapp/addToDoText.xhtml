@@ -16,24 +16,36 @@
 
 <h:body>
 	<div id="container">
-		<h:form>
+		<h:form id="form">
+			<p:growl id="msgs" showDetail="true" />
+
 			<p:outputLabel value=" ToDo Text "
 				style="color : #6EB8FF !important; "></p:outputLabel>
 			<br />
 			<p:inputTextarea rows="5" cols="50" counter="display" maxlength="100"
-				counterTemplate=" {0} characters remaining." autoResize="false" />
+				counterTemplate=" {0} characters remaining." autoResize="false"
+				id="imputText" value="#{todo.todoText}" />
 			<br />
 			<h:outputText id="display" />
 			<br />
-			<br/>
-			<p:outputLabel for="button" value="ToDo Date:"
-				style="color : #6EB8FF !important; " />
 			<br />
-			<p:calendar id="button" value="#{calendarView.date3}" showOn="button" />
-			<br />
-			<br />
-			<p:button value="Create ToDo" styleClass="customButton"></p:button>
+			<!-- Calendar View -->
+			<h:panelGrid columns="2" cellpadding="5">
+				<p:outputLabel for="button" value="Button:" />
+				<p:calendar id="button" value="#{todo.timestamp}" showOn="button">
+					<p:ajax event="dateSelect"
+						listener="#{todo.onDateSelect}" update="msgs" />
+				</p:calendar>
+			</h:panelGrid>
 
+
+			<br />
+			<br />
+			<p:commandButton value="Create ToDo" styleClass="customButton"
+				action="#{todoController.addToDo(todo)}" update="msgs"
+				actionListener="#{todo.click}" icon="ui-icon-check"></p:commandButton>
+			<p:button value="Cancel" styleClass="customButton"
+				outcome="toDoTexts"></p:button>
 		</h:form>
 
 

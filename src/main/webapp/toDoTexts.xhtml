@@ -16,7 +16,7 @@
 
 <h:body>
 	<div id ="container">
-		<p:button value="New ToDo" styleClass="customButton" ></p:button>
+		<p:button value="New ToDo" styleClass="customButton" outcome="addToDoText"></p:button>
 	
 	<h:form>
 		<p:dataTable value="#{todoController.getTodos()}" var="todo">
