@@ -1,19 +1,36 @@
 package com.journaldev.jsf.dbConnection;
 
-import java.sql.SQLException;
-
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
-import com.journaldev.jsf.beans.Text;
-import com.journaldev.jsf.beans.TextBean;
+import com.journaldev.jsf.beans.ToDo;
+import com.journaldev.jsf.beans.ToDoController;
+import com.journaldev.jsf.beans.ToDoDatabaseUtilities;
 
 public class TestDbConnection {
 	public static void main(String[] args) {
-
-		ArrayList<Text> texts = new TextBean().getTexts();
-		for (Text t : texts) {
+		
+		// INSERT
+		ToDo todo = new ToDo("testDbConn", Date.valueOf(LocalDate.now()));
+		ToDoDatabaseUtilities.addToDo(todo);
+		
+		//REMOVE
+				
+				
+		//VIEW
+		ArrayList<ToDo> toDos = new ToDoController().getTodos();
+		for (ToDo t :  toDos) {
 			System.out.println(t.toString());
-
+			if("testDbConn".equals(t.getTodoText())) {
+				ToDoDatabaseUtilities.removeToDo(t);
+			}
+			if(t.getTodoID().equals(Integer.parseInt("5"))){
+				t.setTodoText("updated.");
+				ToDoDatabaseUtilities.editToDoText(t);
+			}
 		}
+		
+		
 	}
 }

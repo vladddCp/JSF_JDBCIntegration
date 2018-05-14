@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>JSF JDBC Integration</title>
+	<!-- h:outputStylesheet library="css" name="texts-style.css" /
+	width:300px; color: #778D9B !important; background-color: white !important;
+                             height:28px; font-size:13px; margin-top: 2px;
+	-->
+	<h:outputStylesheet name="css/textsstyle.css" />
+</h:head>
+
+<h:body>
+	<div id="container">
+		<h:form>
+			<p:outputLabel value=" ToDo Text "
+				style="color : #6EB8FF !important; "></p:outputLabel>
+			<br />
+			<p:inputTextarea rows="5" cols="50" counter="display" maxlength="100"
+				counterTemplate=" {0} characters remaining." autoResize="false" />
+			<br />
+			<h:outputText id="display" />
+			<br />
+			<br/>
+			<p:outputLabel for="button" value="ToDo Date:"
+				style="color : #6EB8FF !important; " />
+			<br />
+			<p:calendar id="button" value="#{calendarView.date3}" showOn="button" />
+			<br />
+			<br />
+			<p:button value="Create ToDo" styleClass="customButton"></p:button>
+
+		</h:form>
+
+
+	</div>
+</h:body>
+</html>
