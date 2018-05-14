@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>JSF JDBC Integration</title>
+	<!-- h:outputStylesheet library="css" name="texts-style.css" /
+	width:300px; color: #778D9B !important; background-color: white !important;
+                             height:28px; font-size:13px; margin-top: 2px;
+	-->
+	<h:outputStylesheet name="css/textsstyle.css" />
+</h:head>
+
+<h:body>
+	<div id="container">
+		<h:form id="form">
+			<p:growl id="msgs" showDetail="true" />
+
+			<p:outputLabel value=" ToDo Text "
+				style="color : #6EB8FF !important; "></p:outputLabel>
+			<br />
+			<p:inputTextarea rows="5" cols="50" counter="display" maxlength="100"
+				counterTemplate=" {0} characters remaining." autoResize="false"
+				id="imputText" value="#{todo.todoText}" />
+			<br />
+			<h:outputText id="display" />
+			<br />
+			<br />
+			<!-- Calendar View -->
+			<h:panelGrid columns="2" cellpadding="5">
+				<p:outputLabel for="button" value="Button:" />
+				<p:calendar id="button" value="#{todo.timestamp}" showOn="button">
+					<p:ajax event="dateSelect"
+						listener="#{todo.onDateSelect}" update="msgs" />
+				</p:calendar>
+			</h:panelGrid>
+
+
+			<br />
+			<br />
+			<p:commandButton value="Create ToDo" styleClass="customButton"
+				action="#{todoController.addToDo(todo)}" update="msgs"
+				actionListener="#{todo.click}" icon="ui-icon-check"></p:commandButton>
+			<p:button value="Cancel" styleClass="customButton"
+				outcome="todoList"></p:button>
+		</h:form>
+
+
+	</div>
+</h:body>
+</html>

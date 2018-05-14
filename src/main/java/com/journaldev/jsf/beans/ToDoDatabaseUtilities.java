@@ -16,6 +16,33 @@ import com.journaldev.jsf.dbConnection.JToDoDatabaseStaticFields;
 
 @ManagedBean(name = "todoDBUtil")
 public class ToDoDatabaseUtilities implements JToDoDatabaseStaticFields {
+	public static ToDo getToDo(int toDoID) {
+
+		Connection con = null;
+		Statement stmnt = null;
+		ToDo todo = null;
+		try {
+			con = DBConnection.getInstance().getConnection();
+			stmnt = con.createStatement();
+
+			String selectToDO = "SELECT * FROM STUFF WHERE ID = " + toDoID;
+			ResultSet rs = stmnt.executeQuery(selectToDO);
+			if (rs.next()) {
+				todo = new ToDo(toDoID, rs.getString(2), rs.getDate(3));
+				todo.setTodoID(toDoID);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+				stmnt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return todo;
+	}
 
 	public static void addToDo(ToDo todo) {
 		Connection con = null;

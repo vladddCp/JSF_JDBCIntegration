@@ -16,7 +16,7 @@
 
 <h:body>
 	<div id ="container">
-		<p:button value="New ToDo" styleClass="customButton" outcome="addToDoText"></p:button>
+		<p:button value="New ToDo" styleClass="customButton" outcome="addTodo"></p:button>
 	
 	<h:form>
 		<p:dataTable value="#{todoController.getTodos()}" var="todo">
@@ -44,6 +44,15 @@
 					</p:outputLabel>
 				</f:facet>
 				<h:outputText value="#{todo.timestamp}" />
+			</p:column>
+			
+			<p:column styleClass="customHeader">
+				<f:facet name="header">
+					<p:outputLabel value=" Action "
+						style="color : #6EB8FF !important; ">
+					</p:outputLabel>
+				</f:facet>
+				<h:commandLink value="Update" action = "#{todoController.loadToDo(todo.todoID)}" />
 			</p:column>
 
 		</p:dataTable>

@@ -11,6 +11,8 @@ import com.journaldev.jsf.beans.ToDoDatabaseUtilities;
 public class TestDbConnection {
 	public static void main(String[] args) {
 		
+		System.out.println("MERGE :" + ToDoDatabaseUtilities.getToDo(5));
+		
 		// INSERT
 		ToDo todo = new ToDo( null,"testDbConn", Date.valueOf(LocalDate.now()));
 		ToDoController td = new ToDoController();
