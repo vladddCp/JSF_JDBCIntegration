@@ -43,8 +43,9 @@ public class ToDoController implements Serializable {
 		return "updateTodo.xhtml";
 	}
 	
-	public void updateToDo(ToDo todo) {
+	public String updateToDo(ToDo todo) {
 		ToDoDatabaseUtilities.editToDoText(todo);
+		return "todoList.xhtml";
 	}
 	
 	@Override

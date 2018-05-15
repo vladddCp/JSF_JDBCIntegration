@@ -48,10 +48,17 @@ public class ToDo implements Serializable {
 	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
 	}
-
-	public ToDo(Integer todoID, String todoText, Date timestamp) {
+	
+	public ToDo(String todoText, Date timestamp) {
 		super();
 		this.todoID = null;
+		this.todoText = todoText;
+		this.timestamp = timestamp;
+	}
+	
+	public ToDo(Integer todoID, String todoText, Date timestamp) {
+		super();
+		this.todoID = todoID;
 		this.todoText = todoText;
 		this.timestamp = timestamp;
 	}
