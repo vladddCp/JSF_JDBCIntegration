@@ -11,7 +11,7 @@ import javax.faces.context.FacesContext;
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.SelectEvent;
 
-@ManagedBean(name = "todo")
+@ManagedBean(name = "todo") 
 public class ToDo implements Serializable {
 
 	private static final long serialVersionUID = 1L;

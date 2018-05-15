@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>JSF JDBC Integration</title>
+	<!-- h:outputStylesheet library="css" name="texts-style.css" /
+	width:300px; color: #778D9B !important; background-color: white !important;
+                             height:28px; font-size:13px; margin-top: 2px;
+	-->
+	<h:outputStylesheet name="css/textsstyle.css" />
+</h:head>
+
+<h:body>
+	<div id ="container">
+		<p:button value="New ToDo" styleClass="customButton" outcome="addTodo"></p:button>
+	
+	<h:form>
+		<p:dataTable value="#{todoController.getTodos()}" var="t">
+
+			<p:column styleClass="customHeader">
+				<!-- How to set the background on Table Header -->
+				<f:facet name="header">
+					<p:outputLabel value=" Text ID "
+						style="color : #6EB8FF !important; "></p:outputLabel>
+				</f:facet>
+				<h:outputText value="#{t.todoID}" style=" width: 60px !important;" />
+			</p:column>
+
+			<p:column styleClass="customHeader1">
+				<f:facet name="header">
+					<p:outputLabel value=" Text " style="color : #6EB8FF !important; "></p:outputLabel>
+				</f:facet>
+				<h:outputText value="#{t.todoText}" />
+			</p:column>
+
+			<p:column styleClass="customHeader2">
+				<f:facet name="header">
+					<p:outputLabel value=" Timestamp "
+						style="color : #6EB8FF !important; ">
+					</p:outputLabel>
+				</f:facet>
+				<h:outputText value="#{t.timestamp}" />
+			</p:column>
+			
+			<p:column styleClass="customHeader">
+				<f:facet name="header">
+					<p:outputLabel value=" Action "
+						style="color : #6EB8FF !important; ">
+					</p:outputLabel>
+				</f:facet>
+				<h:commandLink value="Update" action = "#{todoController.loadToDo(t.todoID)}" />
+			</p:column>
+
+		</p:dataTable>
+	</h:form>
+</div>
+</h:body>
+</html>

@@ -5,19 +5,18 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
 import com.journaldev.jsf.beans.ToDo;
 
 @ManagedBean(name = "todoController")
-@SessionScoped
+
 public class ToDoController implements Serializable {
 
 	private static final long serialVersionUID = 6081417964063918994L;
 	private ArrayList<ToDo> todos;
-
+	private ToDo todo;
+	
 	public ArrayList<ToDo> getTodos() {
 		return ToDoDatabaseUtilities.getAllToDos();
 	}
@@ -31,20 +30,34 @@ public class ToDoController implements Serializable {
 	}
 
 	public String loadToDo(int toDoID) {
+		
 		ToDo todo = ToDoDatabaseUtilities.getToDo(toDoID);
 		
 		// put in the attribute in order to be used from the page
 		
-		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-		Map<String, Object> requestMap = externalContext.getRequestMap();
-		requestMap.put("todolul", todo);
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		Map<String, Object> requestMap = facesContext.getExternalContext().getRequestMap();
+		
+		requestMap.put("todo" , todo);
 		
 		return "updateTodo.xhtml";
+	}
+	
+	public void updateToDo(ToDo todo) {
+		ToDoDatabaseUtilities.editToDoText(todo);
 	}
 	
 	@Override
 	public String toString() {
 		return todos.toString();
+	}
+
+	public ToDo getTodo() {
+		return todo;
+	}
+
+	public void setTodo(ToDo todo) {
+		this.todo = todo;
 	}
 
 	// Calendar View Controller

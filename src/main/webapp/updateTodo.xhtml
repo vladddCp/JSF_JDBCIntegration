@@ -24,7 +24,7 @@
 			<br />
 			<p:inputTextarea rows="5" cols="50" counter="display" maxlength="100"
 				counterTemplate=" {0} characters remaining." autoResize="false"
-				id="imputText" value="#{todolul.todoText}" />
+				id="imputText" value="#{todo.todoText}" />
 			<br />
 			<h:outputText id="display" />
 			<br />
@@ -32,7 +32,7 @@
 			<!-- Calendar View -->
 			<h:panelGrid columns="2" cellpadding="5">
 				<p:outputLabel for="button" value="Button:" />
-				<p:calendar id="button" value="#{todolul.timestamp}" showOn="button">
+				<p:calendar id="button" value="#{todo.timestamp}" showOn="button" >
 					<p:ajax event="dateSelect"
 						listener="#{todo.onDateSelect}" update="msgs" />
 				</p:calendar>
@@ -41,9 +41,9 @@
 
 			<br />
 			<br />
-			<p:commandButton value="Create ToDo" styleClass="customButton"
-				action="#{todoController.addToDo(todo)}" update="msgs"
-				actionListener="#{todo.click}" icon="ui-icon-check"></p:commandButton>
+			<p:commandButton value="Update ToDo" styleClass="customButton"
+				action="#{todoController.updateToDo(todo)}" update="msgs"
+				actionListener="#{todo.click}" icon="ui-icon-check" ></p:commandButton>
 			<p:button value="Cancel" styleClass="customButton"
 				outcome="todoList"></p:button>
 		</h:form>

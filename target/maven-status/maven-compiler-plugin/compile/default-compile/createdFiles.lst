@@ -1,0 +1,7 @@
+com\journaldev\jsf\dbConnection\TestDbConnection.class
+com\journaldev\jsf\dbConnection\JToDoDatabaseStaticFields.class
+com\journaldev\jsf\deprecated\CalendarView.class
+com\journaldev\jsf\beans\ToDo.class
+com\journaldev\jsf\beans\ToDoController.class
+com\journaldev\jsf\dbConnection\DBConnection.class
+com\journaldev\jsf\beans\ToDoDatabaseUtilities.class

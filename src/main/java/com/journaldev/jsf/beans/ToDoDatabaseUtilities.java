@@ -20,28 +20,30 @@ public class ToDoDatabaseUtilities implements JToDoDatabaseStaticFields {
 
 		Connection con = null;
 		Statement stmnt = null;
-		ToDo todo = null;
+		ResultSet rs = null;
 		try {
 			con = DBConnection.getInstance().getConnection();
 			stmnt = con.createStatement();
 
 			String selectToDO = "SELECT * FROM STUFF WHERE ID = " + toDoID;
-			ResultSet rs = stmnt.executeQuery(selectToDO);
+			rs = stmnt.executeQuery(selectToDO);
 			if (rs.next()) {
-				todo = new ToDo(toDoID, rs.getString(2), rs.getDate(3));
-				todo.setTodoID(toDoID);
-			}
+				ToDo todo = new ToDo(rs.getInt(1), rs.getString(2), rs.getDate(3));
+				return todo;
+				}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			try {
 				con.close();
 				stmnt.close();
+				rs.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
-		return todo;
+		return null;
 	}
 
 	public static void addToDo(ToDo todo) {

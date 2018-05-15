@@ -17,7 +17,8 @@ public class TestDbConnection {
 		ToDo todo = new ToDo( null,"testDbConn", Date.valueOf(LocalDate.now()));
 		ToDoController td = new ToDoController();
 		td.addToDo(todo);
-						
+		todo.setTodoText("MODIFICAT");
+		td.updateToDo(todo);	
 		//VIEW
 		ArrayList<ToDo> toDos = new ToDoController().getTodos();
 		for (ToDo t :  toDos) {
